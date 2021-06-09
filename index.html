@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food odering webpage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: burlywood;
+        }
+     
+        tr{
+            text-align: center;
+            background-color: bisque;
+            color: black;
+        }
+        dt{
+            background-color: bisqe;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <font size="6"></font>
+        <table width="800" border="2" cellspacing="4" cellpadding="4" align="center" id="orderform">
+            <tr>
+                <!-- <td>
+                    <img src="img1.jpeg">
+                </td> -->
+            <tr>
+                <td colspan="2">Customer details</td>
+            </tr>
+            <tr>
+                <td>Customer Name</td>
+                <td><input type="text" id="txtname"></td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><input type="text" id="txtmobile"></td>
+            </tr>
+            <tr>
+                <td>Select a meal</td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img2.jpeg" width="100" height="100">
+                    <br>
+                    <input type="radio" name="meal" id="optburger" value="omgburger">omgBurger(&#8377;120/-)
+
+                </td>
+                <td>
+                    <img src="img3.jpeg" width="100" height="100">
+                    <br>
+                    <input type="radio" name="meal" id="optroller" value="omgroller">omgroller(&#8377;100/-)
+
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2">select Ad-on's</td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img4.jpeg" width="100" height="100">
+                    <br>
+                    <input type="checkbox" id="optfries" value="largefries">largefries(&#8377;190/-)
+                </td>
+            </tr>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" class="btn btn-success" value="place order" onclick="placeorder()">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <dl id="order summary" style="display: none;">
+            <h2>order summary</h2>
+            <dt>Customer name</dt>
+            <dd id="lblname"></dd>
+            <dt>mobile</dt>
+            <dd id="lblmobile"></dd>
+            <dt>Meal</dt>
+            <dd id="lblmeal"></dd>
+            <dt>Ad-on's</dt>
+            <dd id="lbladd"></dd>
+            <dt>Total bill amount</dt>
+            <dd id="lblamount"></dd>
+            <br>
+            <input type="button" class="btn btn-success" value="print bill" onclick="window.print()">
+        </dl>
+    </div>
+
+</body>
+<script>
+    function placeorder(){
+        document.getElementById("order summary").style.display="block";
+        // document.getElementById("orderform").style.display="none";
+        Uname=document.getElementById("txtname");
+        mobile=document.getElementById("txtmobile");
+        burger=document.getElementById("optburger");
+        roller=document.getElementById("optroller");
+        fries=document.getElementById("optfries");
+
+        var mcost=0;
+        var acost=0;
+        var mname="";
+        var aname="";
+        if(burger.checked){
+            mcost=120;
+            mname=burger.value;
+        }
+        if(roller.checked){
+            mcost=100;
+            mname=roller.value;
+        }
+        if(fries.checked){
+            acost=190;
+            mcost+=acost;
+            aname+=fries.value+"<br>"
+        }
+
+        document.getElementById("lblname").innerHTML=Uname.value;
+        document.getElementById("lblmobile").innerHTML=mobile.value;
+        document.getElementById("lblmeal").innerHTML=mname;
+        document.getElementById("lbladd").innerHTML=aname;
+        document.getElementById("lblamount").innerHTML=mcost;
+
+    }
+</script>
+
+</html>
